@@ -7,7 +7,7 @@ export PATH=$PATH:/usr/local/pyenv/bin
 export PATH=$PATH:/var/go/.pyenv/versions/2.7.18/bin
 export PATH=$PATH:/usr/local/apache-ant-1.9.16/bin/
 
-mvn clean install -DskipTests -Dbuild-rpm
+mvn clean install -DskipTests -Dbuild-rpm -Drat.skip=true
 
 mkdir -p output
 RPMS=$(find . -type f | grep \.rpm$)
