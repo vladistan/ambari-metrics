@@ -19,7 +19,7 @@
   <groupId>org.apache.ambari</groupId>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>ambari-metrics</artifactId>
-  <version>3.1.0-SNAPSHOT</version>
+  <version>${revision}</version>
   <packaging>pom</packaging>
   <modules>
     <module>ambari-metrics-common</module>
@@ -34,9 +34,10 @@
     <module>ambari-metrics-assembly</module>
   </modules>
   <properties>
+    <revision>${revision}</revision>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <python.ver>python &gt;= 2.6</python.ver>
-    <deb.python.ver>python (&gt;= 2.6)</deb.python.ver>
+    <python.ver>python &gt;= 3.9</python.ver>
+    <deb.python.ver>python (&gt;= 3.9)</deb.python.ver>
     <slf4j.version>2.0.0</slf4j.version>
     <zookeeper.version>3.5.9</zookeeper.version>
     <kafka.version>2.8.1</kafka.version>
