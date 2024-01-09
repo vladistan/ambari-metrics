@@ -78,7 +78,8 @@ class TestHostInfo(TestCase):
     sw.free = 2341234
     
     hostinfo = HostInfo(MagicMock())
-    
+    hostinfo = HostInfo()
+
     mem = hostinfo.get_mem_info()
     
     self.assertAlmostEqual(mem['mem_free'], 2257)
