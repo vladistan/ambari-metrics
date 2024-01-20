@@ -65,13 +65,13 @@ else:
             return inner
 
 try:
-    str
+    unicode
 except NameError:
     # Python 3
-    str = str = str
+    basestring = unicode = str
 
 try:
-    int
+    long
 except NameError:
     # Python 3
     long = int
@@ -218,7 +218,7 @@ def _copy_func_details(func, funcopy):
     #funcopy.__dict__.update(func.__dict__)
     funcopy.__module__ = func.__module__
     if not inPy3k:
-        funcopy.__defaults__ = func.__defaults__
+        funcopy.func_defaults = func.func_defaults
         return
     funcopy.__defaults__ = func.__defaults__
     funcopy.__kwdefaults__ = func.__kwdefaults__
@@ -1463,7 +1463,7 @@ def _patch_multiple(target, spec=None, create=False, spec_set=None,
     When used as a class decorator `patch.multiple` honours `patch.TEST_PREFIX`
     for choosing which methods to wrap.
     """
-    if type(target) in (str, str):
+    if type(target) in (unicode, str):
         getter = lambda: _importer(target)
     else:
         getter = lambda: target
@@ -1596,7 +1596,7 @@ class _patch_dict(object):
     """
 
     def __init__(self, in_dict, values=(), clear=False, **kwargs):
-        if isinstance(in_dict, str):
+        if isinstance(in_dict, basestring):
             in_dict = _importer(in_dict)
         self.in_dict = in_dict
         # support any argument supported by dict(...) constructor
@@ -1782,7 +1782,7 @@ _return_values = {
     '__nonzero__': True,
     '__oct__': '1',
     '__hex__': '0x1',
-    '__long__': int(1),
+    '__long__': long(1),
     '__index__': 1,
 }
 
@@ -1993,7 +1993,7 @@ class _Call(tuple):
             name, args, kwargs = value
         elif _len == 2:
             first, second = value
-            if isinstance(first, str):
+            if isinstance(first, basestring):
                 name = first
                 if isinstance(second, tuple):
                     args = second
@@ -2003,7 +2003,7 @@ class _Call(tuple):
                 args, kwargs = first, second
         elif _len == 1:
             value, = value
-            if isinstance(value, str):
+            if isinstance(value, basestring):
                 name = value
             elif isinstance(value, tuple):
                 args = value
@@ -2047,7 +2047,7 @@ class _Call(tuple):
             if isinstance(value, tuple):
                 other_args = value
                 other_kwargs = {}
-            elif isinstance(value, str):
+            elif isinstance(value, basestring):
                 other_name = value
                 other_args, other_kwargs = (), {}
             else:
@@ -2057,7 +2057,7 @@ class _Call(tuple):
             # len 2
             # could be (name, args) or (name, kwargs) or (args, kwargs)
             first, second = other
-            if isinstance(first, str):
+            if isinstance(first, basestring):
                 other_name = first
                 if isinstance(second, tuple):
                     other_args, other_kwargs = second, {}

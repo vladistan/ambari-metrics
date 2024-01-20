@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 '''
 Licensed to the Apache Software Foundation (ASF) under one
@@ -38,7 +38,7 @@ class BlacklistedSet(set):
 
   def __iter__(self):
     for item in set.__iter__(self):
-      if time.time() > self.__dict.get(item):
+      if time.time() > self.__dict.get(item, 0):
         yield item
 
   def get_actual_size(self):

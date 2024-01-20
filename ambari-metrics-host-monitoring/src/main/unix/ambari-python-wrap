@@ -19,7 +19,7 @@
 
 export PYTHONPATH=/usr/lib/python3.9/site-packages:$PYTHONPATH
 
-# checking for default Python 2
+# checking for default Python 3
 if [ -a /usr/bin/python3 ] && [ -z "$PYTHON" ]; then
   PYTHON=/usr/bin/python3
 fi

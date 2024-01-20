@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 '''
 Licensed to the Apache Software Foundation (ASF) under one
@@ -21,7 +21,7 @@ limitations under the License.
 import logging
 import time
 import json
-from .instance_type_provider import HostInstanceTypeProvider
+from resource_monitoring.core.instance_type_provider import HostInstanceTypeProvider
 
 logger = logging.getLogger()
 

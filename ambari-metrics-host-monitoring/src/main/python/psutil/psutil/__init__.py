@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # Copyright (c) 2009, Giampaolo Rodola'. All rights reserved.
@@ -299,7 +299,7 @@ class Process(object):
         if pid is None:
             pid = os.getpid()
         else:
-            if not _PY3 and not isinstance(pid, int):
+            if not _PY3 and not isinstance(pid, (int, long)):
                 raise TypeError('pid must be an integer (got %r)' % pid)
             if pid < 0:
                 raise ValueError('pid must be a positive integer (got %s)'
@@ -1979,7 +1979,7 @@ def _replace_module():
 
 
 _replace_module()
-del property, memoize, division, _replace_module
+del property, memoize, _replace_module
 if sys.version_info < (3, 0):
     del num
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 '''
 Licensed to the Apache Software Foundation (ASF) under one
@@ -26,7 +26,7 @@ logger = logging.getLogger()
 try:
   import kerberos
 except ImportError:
-  from . import krberr as kerberos
+  from resource_monitoring.core import krberr as kerberos
   logger.warn('import kerberos exception: %s' % str(ImportError))
 pass
 

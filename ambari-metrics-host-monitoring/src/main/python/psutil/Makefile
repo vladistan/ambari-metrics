@@ -3,7 +3,7 @@
 # $ make install PYTHON=python3.3
 
 # You can set these variables from the command line.
-PYTHON    = python
+PYTHON    = python3
 TSCRIPT   = test/test_psutil.py
 
 all: test
@@ -26,10 +26,20 @@ build: clean
 	$(PYTHON) setup.py build
 
 install: build
-	$(PYTHON) setup.py install --user;
+	if test $(PYTHON) = python3.9; then \
+		$(PYTHON) setup.py install; \
+	elif test $(PYTHON) = python2.5; then \
+		$(PYTHON) setup.py install; \
+	else \
+		$(PYTHON) setup.py install --user; \
+	fi
 
 uninstall:
-	cd ..; $(PYTHON) -m pip uninstall -y -v psutil; \
+	if test $(PYTHON) = python3.9; then \
+		pip-3.9 uninstall -y -v psutil; \
+	else \
+		cd ..; $(PYTHON) -m pip uninstall -y -v psutil; \
+	fi
 
 test: install
 	$(PYTHON) $(TSCRIPT)
